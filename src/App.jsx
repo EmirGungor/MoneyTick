@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
-import Header from './Header';
+import React, { useState, useEffect } from "react";
+import Header from "./Header";
+import BuyMeACoffee from "./BuyMeACoffee";
+import "./App.css"
 
 function App() {
-  const [monthlyIncome, setMonthlyIncome] = useState('');
+  const [monthlyIncome, setMonthlyIncome] = useState("");
   const [currentIncome, setCurrentIncome] = useState(0);
   const [isCounting, setIsCounting] = useState(false);
   const [perSecondIncome, setPerSecondIncome] = useState(0);
@@ -17,7 +19,6 @@ function App() {
     }
     return () => clearInterval(interval);
   }, [isCounting, perSecondIncome]);
-  
 
   const startCounting = () => {
     const secondsInWorkMonth = 30 * 8 * 60 * 60; // Ayda 30 gün, günde 8 saat çalışıyoruz
@@ -26,7 +27,7 @@ function App() {
     setCurrentIncome(0);
     setIsCounting(true);
   };
-  
+
   return (
     <div style={styles.container}>
       {!isCounting ? (
@@ -45,46 +46,50 @@ function App() {
         </div>
       ) : (
         <div>
-          <Header/>
-          <h2 style={styles.income}>{currentIncome.toFixed(15)} TL</h2>
+          <Header />
+          <h2 style={styles.income}>{currentIncome.toFixed(5)} TL</h2>
         </div>
       )}
+      <BuyMeACoffee />
     </div>
   );
 }
 
 const styles = {
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    fontFamily: 'Arial, sans-serif',
+    display: "flex",
+    margin: "0",
+    padding: "0",
+    boxSizing: "border-box",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    fontFamily: "Arial, sans-serif",
   },
   inputSection: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   input: {
-    padding: '10px',
-    margin: '10px',
-    fontSize: '16px',
-    borderRadius: '5px',
-    border: '1px solid #ccc',
+    padding: "10px",
+    margin: "10px",
+    fontSize: "16px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
   },
   button: {
-    padding: '10px 20px',
-    fontSize: '16px',
-    borderRadius: '5px',
-    background: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    cursor: 'pointer',
+    padding: "10px 20px",
+    fontSize: "16px",
+    borderRadius: "5px",
+    background: "#4CAF50",
+    color: "white",
+    border: "none",
+    cursor: "pointer",
   },
   income: {
-    fontSize: '48px',
-    color: '#4CAF50',
-    fontWeight: 'bold',
+    fontSize: "48px",
+    color: "#4CAF50",
+    fontWeight: "bold",
   },
 };
 
